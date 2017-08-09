@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:property-placeholder location="config/jdbc/jdbc.properties" ignore-resource-not-found="true"/>
+    <context:property-placeholder location="../config/jdbc/jdbc.properties" ignore-resource-not-found="true"/>
     <context:component-scan base-package="transaction" />
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">

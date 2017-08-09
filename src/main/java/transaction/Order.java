@@ -5,4 +5,5 @@ package transaction;
  */
 
 public class Order {
+
 }

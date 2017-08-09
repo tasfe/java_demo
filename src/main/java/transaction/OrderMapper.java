@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 public interface OrderMapper {
 
     @Query(value = "update mem_vip_order set status = ?1 where id = ?2", nativeQuery = true)
-    void updateOrder();
+    void updateOrder(int status, int orderId);
 }
