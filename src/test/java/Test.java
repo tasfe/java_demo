@@ -21,6 +21,6 @@ public class Test {
     @org.junit.Test
     public void test() {
 
-        orderService.update1();
+        orderService.update2();
     }
 }

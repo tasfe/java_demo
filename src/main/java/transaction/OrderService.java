@@ -1,5 +1,6 @@
 package transaction;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class OrderService {
+
+    @Autowired
+    OrderMapper orderMapper;
 
     public void update1() {
         System.out.println("test ...");
@@ -20,7 +24,17 @@ public class OrderService {
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     public void update2() {
 
-        throw new RuntimeException("update2 runtimeException ...");
+        update6();
+
+        orderMapper.updateOrder(0, 105794);
+        System.out.println("update2 runtimeException ... status 0");
+
+       // update3();
+
+
+        throw new RuntimeException("update2 runtimeException ... status 0");
+
+
     }
 
     /**
@@ -28,8 +42,9 @@ public class OrderService {
      */
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     public void update3() {
-
-        throw new RuntimeException("update3 runtimeException ...");
+        orderMapper.updateOrder(1, 105794);
+        System.out.println("update3 runtimeException ... status 1");
+        //throw new RuntimeException("update3 runtimeException ... status 1");
     }
 
     /**
@@ -37,8 +52,9 @@ public class OrderService {
      */
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.MANDATORY)
     public void update4() {
-
-        throw new RuntimeException("update4 runtimeException ...");
+        orderMapper.updateOrder(2, 105794);
+        System.out.println("update4 runtimeException ... status 2");
+        //throw new RuntimeException("update4 runtimeException ... status 2");
     }
 
     /**
@@ -46,8 +62,9 @@ public class OrderService {
      */
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void update5() {
-
-        throw new RuntimeException("update5 runtimeException ...");
+        orderMapper.updateOrder(3, 105794);
+        System.out.println("update5 runtimeException ... status 3");
+        //throw new RuntimeException("update5 runtimeException ... status 3");
     }
 
     /**
@@ -55,8 +72,9 @@ public class OrderService {
      */
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED)
     public void update6() {
-
-        throw new RuntimeException("update6 runtimeException ...");
+        orderMapper.updateOrder(4, 105794);
+        System.out.println("update6 runtimeException ... status 4");
+        //throw new RuntimeException("update6 runtimeException ... status 4");
     }
 
     /**
@@ -64,8 +82,9 @@ public class OrderService {
      */
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED)
     public void update7() {
-
-        throw new RuntimeException("update7 runtimeException ...");
+        orderMapper.updateOrder(5, 105794);
+        System.out.println("update7 runtimeException ... status 5");
+        throw new RuntimeException("update7 runtimeException ... status 5");
     }
 
     /**
@@ -73,8 +92,9 @@ public class OrderService {
      */
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.NESTED)
     public void update8() {
-
-        throw new RuntimeException("update8 runtimeException ...");
+        orderMapper.updateOrder(0, 105794);
+        System.out.println("update8 runtimeException ... status 0");
+        throw new RuntimeException("update8 runtimeException ... status 0");
     }
 
 }
